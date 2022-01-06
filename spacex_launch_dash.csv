@@ -1,4 +1,4 @@
-,Flight Number,Launch Site,Mission Outcome,class,Payload Mass (kg),Booster Version,Booster Version Category
+id,Flight Number,Launch Site,Mission Outcome,class,Payload Mass (kg),Booster Version,Booster Version Category
 0,1,CCAFS LC-40,Success,0,0.0,F9 v1.0  B0003,v1.0
 1,2,CCAFS LC-40,Success,0,0.0,F9 v1.0  B0004,v1.0
 2,3,CCAFS LC-40,Success,0,525.0,F9 v1.0  B0005,v1.0

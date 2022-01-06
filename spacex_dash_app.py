@@ -5,6 +5,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import plotly.express as px
+from plotly.graph_objects import Layout
 
 # Read the airline data into pandas dataframe
 spacex_df = pd.read_csv("spacex_launch_dash.csv")
@@ -57,16 +58,14 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
               Input(component_id='site-dropdown', component_property='value'))
 def get_pie_chart(entered_site):
     if entered_site == 'ALL':
-        filtered_df = spacex_df
+        filtered_df = spacex_df.copy()
         names = 'Launch Site'
         title = 'Total Success Launchs by Site'
     else:
-        filtered_df = spacex_df[spacex_df['Launch Site'] == entered_site]
-        names = 'Mission Outcome'
+        filtered_df = spacex_df[spacex_df['Launch Site'] == entered_site]['class']
+        names = 'class'
         title = 'Total Success Launchs for site {}'.format(entered_site)
-    fig = px.pie(filtered_df, values='class', 
-    names=names, 
-    title=title)
+    fig = px.pie(filtered_df, names=names, title=title)
     return fig
 
 # TASK 4:
@@ -76,7 +75,7 @@ def get_pie_chart(entered_site):
                   Input(component_id="payload-slider", component_property="value")])
 def plot_scatter(entered_site, entered_payload):
     if entered_site == 'ALL':
-        filtered_df = spacex_df
+        filtered_df = spacex_df.copy()
     else:
         filtered_df = spacex_df[spacex_df['Launch Site'] == entered_site]
 
